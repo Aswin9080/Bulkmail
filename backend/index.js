@@ -1,4 +1,4 @@
-
+import dotenv from "dotenv";
 const mongoose=require("mongoose")
 const express=require('express')
 const cors=require('cors')
@@ -10,7 +10,7 @@ app.use(cors());
 const nodemailer = require("nodemailer");
 
 //database mangoose
-mongoose.connect("mongodb+srv://Aswin:1234@aswin.cuumwc7.mongodb.net/?retryWrites=true&w=majority&appName=Aswin").then(function(){
+mongoose.connect(MANGO_URI).then(function(){
     console.log('db connected')
 }).catch(function(data){
     console.log('failed connected')
@@ -70,6 +70,6 @@ app.post('/sendmail',function(req,res){
     
 })
 
-app.listen(5000,function(){
+app.listen(process.env.PORT,function(){
     console.log('server started.......')
 })
